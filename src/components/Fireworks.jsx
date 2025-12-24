@@ -22,11 +22,11 @@ const Fireworks = () => {
             }, 2000);
         };
 
-        // Create fireworks every 20 seconds
-        const interval = setInterval(createFirework, 20000);
+        // Create fireworks every 10 seconds
+        const interval = setInterval(createFirework, 10000);
 
-        // Initial firework after 5 seconds
-        setTimeout(createFirework, 5000);
+        // Initial firework after 3 seconds
+        setTimeout(createFirework, 3000);
 
         return () => clearInterval(interval);
     }, []);

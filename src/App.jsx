@@ -7,7 +7,6 @@ import MusicPlayer from './components/MusicPlayer'
 import ChristmasLights from './components/ChristmasLights'
 import SantaFlying from './components/SantaFlying'
 import Fireworks from './components/Fireworks'
-import ShareButtons from './components/ShareButtons'
 import RingingBells from './components/RingingBells'
 
 function App() {
@@ -50,7 +49,6 @@ function App() {
       <ChristmasLights />
       <SantaFlying />
       <Fireworks />
-      <ShareButtons />
 
       <div className="container">
         {/* Decorative Stars */}
