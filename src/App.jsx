@@ -8,6 +8,8 @@ import ChristmasLights from './components/ChristmasLights'
 import SantaFlying from './components/SantaFlying'
 import Fireworks from './components/Fireworks'
 import RingingBells from './components/RingingBells'
+import Profile3DModel from './components/Profile3DModel'
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -86,6 +88,9 @@ function App() {
               </h2>
               <div className="company-tagline">INDIA PVT LIMITED</div>
             </div>
+
+            {/* 3D Profile Model */}
+            <Profile3DModel />
 
             {/* Christmas Ornaments */}
             <div className="ornaments-section">

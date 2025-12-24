@@ -1,0 +1,187 @@
+/* ========================================
+   3D MODEL WRAPPER
+   ======================================== */
+
+.profile-3d-model-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0 1rem;
+    perspective: 1200px;
+    position: relative;
+    z-index: 5;
+}
+
+.profile-3d-model {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+    animation: float3D 6s ease-in-out infinite;
+}
+
+@keyframes float3D {
+
+    0%,
+    100% {
+        transform: translateY(0px) translateZ(0px);
+    }
+
+    50% {
+        transform: translateY(-15px) translateZ(20px);
+    }
+}
+
+/* ========================================
+   MODEL GLOW EFFECT
+   ======================================== */
+
+.model-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(212, 175, 55, 0.4) 0%,
+            rgba(212, 175, 55, 0.2) 40%,
+            transparent 70%);
+    animation: pulseGlow3D 3s ease-in-out infinite;
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+@keyframes pulseGlow3D {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   MODEL IMAGE
+   ======================================== */
+
+.model-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter:
+        drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.6)) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    animation: modelFloat 4s ease-in-out infinite;
+    transition: filter 0.3s ease;
+}
+
+.profile-3d-model:hover .model-image {
+    filter:
+        drop-shadow(0 20px 45px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 35px rgba(212, 175, 55, 0.8)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes modelFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+/* ========================================
+   SHINE EFFECT
+   ======================================== */
+
+.model-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 70%);
+    animation: modelShine 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 3;
+    mix-blend-mode: overlay;
+}
+
+@keyframes modelShine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   HOVER EFFECTS
+   ======================================== */
+
+.profile-3d-model:hover {
+    animation: none;
+}
+
+.profile-3d-model:active {
+    transform: scale(0.95) !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 600px) {
+    .profile-3d-model {
+        width: 200px;
+        height: 200px;
+    }
+
+    .model-glow {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-3d-model {
+        width: 130px;
+        height: 130px;
+    }
+
+    .model-glow {
+        width: 170px;
+        height: 170px;
+    }
+
+    .profile-3d-model-wrapper {
+        margin: 0.75rem 0 0.75rem;
+    }
+}
