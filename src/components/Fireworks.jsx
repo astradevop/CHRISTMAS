@@ -6,12 +6,17 @@ const Fireworks = () => {
 
     useEffect(() => {
         const createFirework = () => {
-            const id = Date.now();
+            const id = Date.now() + Math.random();
             const newFirework = {
                 id,
                 left: 20 + Math.random() * 60,
                 top: 20 + Math.random() * 40,
-                color: ['#ff4444', '#44ff44', '#4444ff', '#ffff44', '#ff44ff'][Math.floor(Math.random() * 5)],
+                color: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffffff', '#ffa500'][Math.floor(Math.random() * 8)],
+                particles: Array.from({ length: 50 }).map((_, i) => ({
+                    angle: (360 / 50) * i,
+                    velocity: 0.5 + Math.random() * 1.5,
+                    delay: Math.random() * 0.1,
+                })),
             };
 
             setFireworks(prev => [...prev, newFirework]);
@@ -19,7 +24,7 @@ const Fireworks = () => {
             // Remove after animation completes
             setTimeout(() => {
                 setFireworks(prev => prev.filter(fw => fw.id !== id));
-            }, 2000);
+            }, 3000);
         };
 
         // Create fireworks every 10 seconds
@@ -42,13 +47,19 @@ const Fireworks = () => {
                         top: `${firework.top}%`,
                     }}
                 >
-                    {Array.from({ length: 12 }).map((_, i) => (
+                    {/* Center burst flash */}
+                    <div className="firework-flash" style={{ backgroundColor: firework.color }}></div>
+
+                    {/* Particles */}
+                    {firework.particles.map((particle, i) => (
                         <div
                             key={i}
                             className="firework-particle"
                             style={{
                                 backgroundColor: firework.color,
-                                transform: `rotate(${i * 30}deg) translateY(-50px)`,
+                                '--angle': `${particle.angle}deg`,
+                                '--velocity': particle.velocity,
+                                '--delay': `${particle.delay}s`,
                             }}
                         />
                     ))}

@@ -5,11 +5,11 @@ const SantaFlying = () => {
     const [isFlying, setIsFlying] = useState(false);
 
     useEffect(() => {
-        // Santa flies across every 5 seconds
+        // Santa flies across every 10 seconds
         const flyInterval = setInterval(() => {
             setIsFlying(true);
             setTimeout(() => setIsFlying(false), 8000); // Animation duration
-        }, 5000);
+        }, 10000);
 
         // Initial flight after 3 seconds
         setTimeout(() => {
