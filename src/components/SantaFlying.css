@@ -1,0 +1,75 @@
+.santa-container {
+    position: fixed;
+    top: 15%;
+    left: -200px;
+    z-index: 500;
+    animation: santaFly 8s linear forwards;
+    pointer-events: none;
+}
+
+.santa-sleigh {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: bounce 0.5s ease-in-out infinite;
+}
+
+.santa {
+    animation: wave 1s ease-in-out infinite;
+}
+
+.sleigh {
+    transform: rotate(-10deg);
+}
+
+@keyframes santaFly {
+    0% {
+        left: -200px;
+        top: 15%;
+    }
+
+    50% {
+        top: 10%;
+    }
+
+    100% {
+        left: calc(100% + 200px);
+        top: 5%;
+    }
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .santa-sleigh {
+        font-size: 2rem;
+    }
+
+    .santa-container {
+        top: 20%;
+    }
+}

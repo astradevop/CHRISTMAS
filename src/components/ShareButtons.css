@@ -1,0 +1,105 @@
+.share-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 0.75rem;
+    z-index: 1000;
+}
+
+.share-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.share-button .icon {
+    font-size: 1.2rem;
+}
+
+.share-button.whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+}
+
+.share-button.whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.share-button.copy-link {
+    background: linear-gradient(135deg, #f48ba8 0%, #fce4ec 100%);
+    color: #2c2c2c;
+}
+
+.share-button.copy-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 139, 168, 0.4);
+}
+
+.share-button:active {
+    transform: translateY(0);
+}
+
+.copied-toast {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(44, 44, 44, 0.95);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: slideInToast 0.3s ease-out;
+    z-index: 1001;
+}
+
+@keyframes slideInToast {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .share-buttons {
+        top: 10px;
+        right: 10px;
+        gap: 0.5rem;
+    }
+
+    .share-button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .share-button .label {
+        display: none;
+    }
+
+    .share-button .icon {
+        font-size: 1.5rem;
+    }
+
+    .copied-toast {
+        top: 60px;
+        right: 10px;
+        font-size: 0.8rem;
+    }
+}

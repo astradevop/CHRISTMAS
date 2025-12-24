@@ -4,10 +4,16 @@ import SnowflakesBg from './components/SnowflakesBg'
 import Confetti from './components/Confetti'
 import Sparkles from './components/Sparkles'
 import MusicPlayer from './components/MusicPlayer'
+import ChristmasLights from './components/ChristmasLights'
+import SantaFlying from './components/SantaFlying'
+import Fireworks from './components/Fireworks'
+import ShareButtons from './components/ShareButtons'
+import RingingBells from './components/RingingBells'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [cardTilt, setCardTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setTimeout(() => setLoaded(true), 100);
@@ -15,12 +21,36 @@ function App() {
     setTimeout(() => setShowConfetti(false), 6000);
   }, []);
 
+  // 3D Tilt effect for main card
+  const handleCardMouseMove = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    setCardTilt({ x: rotateX, y: rotateY });
+  };
+
+  const handleCardMouseLeave = () => {
+    setCardTilt({ x: 0, y: 0 });
+  };
+
   return (
     <div className={`app ${loaded ? 'loaded' : ''}`}>
       <SnowflakesBg />
       {showConfetti && <Confetti />}
       <Sparkles />
       <MusicPlayer />
+      <ChristmasLights />
+      <SantaFlying />
+      <Fireworks />
+      <ShareButtons />
 
       <div className="container">
         {/* Decorative Stars */}
@@ -38,8 +68,16 @@ function App() {
           <div className="snowflake-deco right">❄</div>
         </header>
 
-        {/* Main Card */}
-        <div className="main-card">
+        {/* Main Card with 3D Tilt */}
+        <div
+          className="main-card"
+          onMouseMove={handleCardMouseMove}
+          onMouseLeave={handleCardMouseLeave}
+          style={{
+            transform: `perspective(1000px) rotateX(${cardTilt.x}deg) rotateY(${cardTilt.y}deg)`,
+            transition: cardTilt.x === 0 ? 'transform 0.5s ease' : 'none'
+          }}
+        >
           <div className="card-glow-effect"></div>
           <div className="card-inner">
             {/* Company Logo Section */}
@@ -53,21 +91,21 @@ function App() {
 
             {/* Christmas Ornaments */}
             <div className="ornaments-section">
-              <div className="ornament ornament-1" title="Click me!">
+              <div className="ornament ornament-1">
                 <div className="ornament-string"></div>
                 <div className="ornament-cap"></div>
                 <div className="ornament-ball stripes">
                   <div className="ornament-shine"></div>
                 </div>
               </div>
-              <div className="ornament ornament-2" title="Click me!">
+              <div className="ornament ornament-2">
                 <div className="ornament-string"></div>
                 <div className="ornament-cap"></div>
                 <div className="ornament-ball pattern">
                   <div className="ornament-shine"></div>
                 </div>
               </div>
-              <div className="ornament ornament-3" title="Click me!">
+              <div className="ornament ornament-3">
                 <div className="ornament-string"></div>
                 <div className="ornament-cap"></div>
                 <div className="ornament-ball stripes">
@@ -98,6 +136,9 @@ function App() {
             May your holidays sparkle with joy and laughter! Sending you and your family lots of love this festive season.
           </p>
         </div>
+
+        {/* Ringing Bells */}
+        <RingingBells />
 
         {/* Footer */}
         <footer className="footer">

@@ -1,0 +1,85 @@
+.bells-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    animation: fadeIn 1s ease-out 1.7s backwards;
+}
+
+.bell {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(244, 139, 168, 0.3));
+    animation: gentleSwing 3s ease-in-out infinite;
+}
+
+.bell:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bell:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.bell:nth-child(3) {
+    animation-delay: 2s;
+}
+
+.bell:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 6px 12px rgba(244, 139, 168, 0.5));
+}
+
+.bell:active {
+    transform: scale(0.95);
+}
+
+.bell.ringing {
+    animation: ringBell 0.5s ease-in-out;
+}
+
+@keyframes gentleSwing {
+
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes ringBell {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: rotate(-15deg);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: rotate(15deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .bells-container {
+        gap: 1.5rem;
+    }
+
+    .bell {
+        font-size: 2.5rem;
+    }
+}
