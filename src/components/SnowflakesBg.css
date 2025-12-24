@@ -1,0 +1,19 @@
+.snowflakes-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bg-snowflake {
+    position: absolute;
+    top: -10vh;
+    color: #f48ba8;
+    user-select: none;
+    animation: snowfallDrift linear infinite;
+    text-shadow: 0 0 3px rgba(244, 139, 168, 0.3);
+}

@@ -1,0 +1,32 @@
+.sparkles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 15;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    color: #f48ba8;
+    font-size: 1rem;
+    animation: sparkleAnimation ease-in-out infinite;
+    filter: drop-shadow(0 0 3px #f48ba8);
+}
+
+@keyframes sparkleAnimation {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+    }
+}

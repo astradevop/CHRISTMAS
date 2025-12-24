@@ -1,0 +1,80 @@
+.ornaments-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.floating-ornament {
+    position: absolute;
+    font-size: clamp(2rem, 5vw, 4rem);
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.3;
+    filter: drop-shadow(0 0 10px currentColor);
+    transition: all 0.3s ease;
+}
+
+.floating-ornament:hover {
+    opacity: 0.8;
+    transform: scale(1.2);
+}
+
+.ornament-left {
+    top: 15%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.ornament-right {
+    top: 20%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+.ornament-left-2 {
+    top: 50%;
+    left: 3%;
+    animation-delay: 2s;
+}
+
+.ornament-right-2 {
+    top: 45%;
+    right: 5%;
+    animation-delay: 3s;
+}
+
+.ornament-center {
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 4s;
+}
+
+.ornament-left-3 {
+    top: 80%;
+    left: 10%;
+    animation-delay: 5s;
+}
+
+.ornament-right-3 {
+    top: 75%;
+    right: 12%;
+    animation-delay: 6s;
+}
+
+@media (max-width: 768px) {
+    .floating-ornament {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        opacity: 0.2;
+    }
+
+    .ornament-left-3,
+    .ornament-right-3,
+    .ornament-center {
+        display: none;
+    }
+}

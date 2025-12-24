@@ -1,0 +1,781 @@
+/* ========================================
+   APP CONTAINER
+   ======================================== */
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdeef4 0%, #fce4ec 50%, #fdeef4 100%);
+  padding: 2rem 1rem;
+  opacity: 0;
+  transition: opacity 1.2s ease-in;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.app.loaded {
+  opacity: 1;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========================================
+   FLOATING STARS
+   ======================================== */
+
+.floating-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: floatStar 8s ease-in-out infinite, twinkle 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.star-1 {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s, 0s;
+}
+
+.star-2 {
+  top: 20%;
+  right: 15%;
+  animation-delay: 1s, 0.5s;
+}
+
+.star-3 {
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 2s, 1s;
+  font-size: 2rem;
+}
+
+.star-4 {
+  bottom: 30%;
+  right: 10%;
+  animation-delay: 3s, 1.5s;
+}
+
+@keyframes floatStar {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  25% {
+    transform: translateY(-15px) translateX(10px);
+  }
+
+  50% {
+    transform: translateY(-5px) translateX(-10px);
+  }
+
+  75% {
+    transform: translateY(-20px) translateX(5px);
+  }
+}
+
+/* ========================================
+   HEADER - SEASON'S GREETINGS
+   ======================================== */
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.seasons-greeting {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  color: #f48ba8;
+  font-weight: 400;
+  margin: 0;
+}
+
+.snowflake-deco {
+  color: #f48ba8;
+  font-size: 1.5rem;
+  animation: twinkle 3s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.snowflake-deco:hover {
+  transform: scale(1.3) rotate(180deg);
+  filter: drop-shadow(0 0 8px #f48ba8);
+}
+
+.snowflake-deco.left {
+  animation-delay: 0s;
+}
+
+.snowflake-deco.right {
+  animation-delay: 1.5s;
+}
+
+/* ========================================
+   MAIN CARD
+   ======================================== */
+
+.main-card {
+  background: linear-gradient(135deg, #1a2f1a 0%, #0d1f0d 100%);
+  border-radius: 24px;
+  padding: 3rem 2rem 2.5rem;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 0 40px rgba(212, 175, 55, 0.1);
+  margin-bottom: 2rem;
+  animation: scaleIn 0.8s ease-out 0.3s backwards;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+    0 0 60px rgba(212, 175, 55, 0.2);
+}
+
+.main-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.card-glow-effect {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  animation: rotate360 20s linear infinite;
+  pointer-events: none;
+}
+
+.card-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ========================================
+   COMPANY SECTION
+   ======================================== */
+
+.company-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.company-name {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.1;
+  cursor: default;
+}
+
+.infra,
+.elevators {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  animation: shimmerText 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.company-name:hover .infra,
+.company-name:hover .elevators {
+  letter-spacing: 0.2em;
+  transform: scale(1.05);
+}
+
+.infra {
+  font-size: 2.8rem;
+}
+
+.elevators {
+  font-size: 2.8rem;
+}
+
+.company-tagline {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: #d4af37;
+  font-weight: 300;
+  position: relative;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.company-tagline::before,
+.company-tagline::after {
+  content: '—';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d4af37;
+  opacity: 0.6;
+}
+
+.company-tagline::before {
+  left: -2rem;
+}
+
+.company-tagline::after {
+  right: -2rem;
+}
+
+/* ========================================
+   ORNAMENTS SECTION
+   ======================================== */
+
+.ornaments-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 2rem 0 0;
+  position: relative;
+}
+
+.snow-ground {
+  position: absolute;
+  bottom: -10px;
+  left: 10%;
+  right: 10%;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.6) 100%);
+  filter: blur(15px);
+  border-radius: 50%;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.ornament {
+  position: relative;
+  animation: swing 4s ease-in-out infinite;
+  transform-origin: top center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ornament:hover {
+  animation: swingFast 1s ease-in-out infinite;
+  transform: scale(1.1);
+}
+
+@keyframes swingFast {
+
+  0%,
+  100% {
+    transform: rotate(-8deg) scale(1.1);
+  }
+
+  50% {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+.ornament:active {
+  transform: scale(0.95);
+}
+
+.ornament-1 {
+  animation-delay: 0s;
+}
+
+.ornament-2 {
+  animation-delay: 0.5s;
+  transform: translateY(-10px);
+}
+
+.ornament-3 {
+  animation-delay: 1s;
+}
+
+.ornament-string {
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(192, 192, 192, 0.8), rgba(192, 192, 192, 0.3));
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ornament-cap {
+  width: 20px;
+  height: 12px;
+  background: linear-gradient(135deg, #c0c0c0 0%, #808080 100%);
+  border-radius: 4px 4px 0 0;
+  margin: 0 auto 3px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ornament-cap::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #808080;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ornament-ball {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.1);
+  animation: float 3s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.ornament-shine {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: rotate(-45deg);
+  animation: shineMove 4s ease-in-out infinite;
+}
+
+@keyframes shineMove {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: rotate(-45deg) scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+.ornament-ball.stripes {
+  background:
+    repeating-linear-gradient(45deg,
+      #c41e3a,
+      #c41e3a 8px,
+      #ffffff 8px,
+      #ffffff 16px);
+}
+
+.ornament-ball.pattern {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  position: relative;
+}
+
+.ornament-ball.pattern::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15,5 Q20,10 15,15 Q10,10 15,5 M15,15 Q20,20 15,25 Q10,20 15,15' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+.ornament-1 .ornament-ball {
+  animation-delay: 0s;
+}
+
+.ornament-2 .ornament-ball {
+  animation-delay: 0.5s;
+  width: 80px;
+  height: 80px;
+}
+
+.ornament-3 .ornament-ball {
+  animation-delay: 1s;
+}
+
+/* ========================================
+   GREETING SECTION
+   ======================================== */
+
+.greeting-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease-out 0.6s backwards;
+}
+
+.merry {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  margin: 0;
+  line-height: 1;
+  animation: slideInLeft 0.8s ease-out 0.8s backwards;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.merry:hover {
+  color: #c41e3a;
+  transform: scale(1.05);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.christmas {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #c41e3a;
+  margin: 0;
+  line-height: 1;
+  animation: slideInRight 0.8s ease-out 1s backwards;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.christmas:hover {
+  transform: scale(1.05);
+  text-shadow: 3px 3px 6px rgba(196, 30, 58, 0.3);
+}
+
+.star-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  animation: fadeIn 1s ease-out 1.2s backwards;
+}
+
+.star-divider .line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #f48ba8, transparent);
+}
+
+.star-divider .rotating-star {
+  color: #f48ba8;
+  font-size: 1.2rem;
+  animation: rotate360 4s linear infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.star-divider .rotating-star:hover {
+  transform: scale(1.5);
+  filter: drop-shadow(0 0 8px #f48ba8);
+}
+
+.happy-new-year {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  color: #2c2c2c;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  animation: fadeIn 1s ease-out 1.4s backwards;
+}
+
+.message {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5c5c5c;
+  max-width: 400px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-out 1.6s backwards;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 1s ease-out 1.8s backwards;
+}
+
+.with-love {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: #f48ba8;
+  font-weight: 400;
+  margin: 0 0 0.5rem 0;
+}
+
+.sender-name {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.sender-name:hover {
+  color: #c41e3a;
+  transform: scale(1.05);
+}
+
+.phone {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #5c5c5c;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.phone:hover {
+  background: rgba(244, 139, 168, 0.1);
+  color: #c41e3a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 139, 168, 0.3);
+}
+
+.phone:active {
+  transform: translateY(0);
+}
+
+.phone-icon {
+  font-size: 1rem;
+}
+
+.phone-icon.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.snowflake-deco.bottom {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: twinkle 3s ease-in-out infinite 2s;
+}
+
+/* ========================================
+   DECORATIVE BORDER
+   ======================================== */
+
+.decorative-border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  animation: fadeIn 1.5s ease-out 2s backwards;
+}
+
+.border-ornament {
+  font-size: 1.5rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.border-ornament:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.border-ornament:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.border-ornament:nth-child(5) {
+  animation-delay: 1s;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.border-line {
+  flex: 1;
+  max-width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f48ba8, transparent);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+  .infra,
+  .elevators {
+    font-size: 2.2rem;
+  }
+
+  .company-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+  }
+
+  .ornament-ball {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ornament-2 .ornament-ball {
+    width: 70px;
+    height: 70px;
+  }
+
+  .merry,
+  .christmas {
+    font-size: 3rem;
+  }
+
+  .sender-name {
+    font-size: 1.6rem;
+  }
+
+  .message {
+    font-size: 0.9rem;
+  }
+
+  .floating-stars .star {
+    font-size: 1.2rem;
+  }
+
+  .star-3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .app {
+    padding: 1rem 0.5rem;
+  }
+
+  .main-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .infra,
+  .elevators {
+    font-size: 1.8rem;
+  }
+
+  .company-tagline::before,
+  .company-tagline::after {
+    display: none;
+  }
+
+  .ornaments-section {
+    gap: 1rem;
+  }
+
+  .ornament-ball {
+    width: 50px;
+    height: 50px;
+  }
+
+  .ornament-2 .ornament-ball {
+    width: 60px;
+    height: 60px;
+  }
+
+  .decorative-border {
+    gap: 0.5rem;
+  }
+
+  .border-line {
+    max-width: 50px;
+  }
+}

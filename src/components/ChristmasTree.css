@@ -1,0 +1,288 @@
+.christmas-tree {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-xl) 0;
+}
+
+/* ========================================
+   STAR
+   ======================================== */
+
+.tree-star {
+    width: 80px;
+    height: 80px;
+    margin-bottom: -10px;
+    z-index: 10;
+    animation: glow-pulse 2s ease-in-out infinite, rotate-slow 20s linear infinite;
+    filter: drop-shadow(0 0 20px var(--christmas-gold));
+}
+
+.star-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   TREE LAYERS
+   ======================================== */
+
+.tree-layers {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tree-layer {
+    position: relative;
+    margin: -15px 0;
+    transition: all 0.3s ease;
+}
+
+.tree-layer:hover {
+    transform: scale(1.05);
+}
+
+.layer-content {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+/* Individual layer sizes */
+.layer-1 .layer-content {
+    border-width: 0 40px 60px 40px;
+    border-color: transparent transparent var(--forest-green) transparent;
+}
+
+.layer-2 .layer-content {
+    border-width: 0 60px 80px 60px;
+    border-color: transparent transparent var(--christmas-green) transparent;
+}
+
+.layer-3 .layer-content {
+    border-width: 0 80px 100px 80px;
+    border-color: transparent transparent var(--forest-green) transparent;
+}
+
+.layer-4 .layer-content {
+    border-width: 0 100px 120px 100px;
+    border-color: transparent transparent var(--christmas-green) transparent;
+}
+
+.layer-5 .layer-content {
+    border-width: 0 120px 140px 120px;
+    border-color: transparent transparent var(--forest-green) transparent;
+}
+
+/* ========================================
+   TREE LIGHTS
+   ======================================== */
+
+.tree-light {
+    position: absolute;
+    bottom: 20%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.tree-light.light-red {
+    background: radial-gradient(circle, var(--christmas-red) 0%, var(--deep-red) 100%);
+}
+
+.tree-light.light-gold {
+    background: radial-gradient(circle, var(--christmas-gold) 0%, var(--warm-amber) 100%);
+}
+
+.tree-light.on {
+    box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+    transform: translateX(-50%) scale(1.2);
+}
+
+.tree-light.off {
+    opacity: 0.3;
+    box-shadow: none;
+    transform: translateX(-50%) scale(0.8);
+}
+
+/* Animation delays for floating effect */
+.tree-light:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.tree-light:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.tree-light:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.tree-light:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.tree-light:nth-child(5) {
+    animation-delay: 2s;
+}
+
+.tree-light:nth-child(6) {
+    animation-delay: 2.5s;
+}
+
+/* ========================================
+   TREE TRUNK
+   ======================================== */
+
+.tree-trunk {
+    width: 50px;
+    height: 60px;
+    background: linear-gradient(180deg, #4a2c2a 0%, #6b4423 100%);
+    border-radius: 0 0 8px 8px;
+    margin-top: -5px;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5),
+        0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.tree-trunk::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* ========================================
+   GIFTS
+   ======================================== */
+
+.gifts-container {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    animation: slide-in-up 1s ease-out 1.2s backwards;
+}
+
+.gift {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-sm);
+    position: relative;
+    box-shadow: var(--shadow-card);
+    animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.gift::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+}
+
+.gift::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%);
+}
+
+.gift-1 {
+    background: linear-gradient(135deg, var(--christmas-red) 0%, var(--deep-red) 100%);
+    animation-delay: 0s;
+}
+
+.gift-2 {
+    background: var(--gradient-gold);
+    animation-delay: 0.3s;
+    width: 60px;
+    height: 60px;
+}
+
+.gift-3 {
+    background: linear-gradient(135deg, var(--christmas-green) 0%, var(--forest-green) 100%);
+    animation-delay: 0.6s;
+}
+
+/* Bow on gifts */
+.gift-2::before {
+    content: '🎀';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    animation: swing 2s ease-in-out infinite;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .christmas-tree {
+        max-width: 300px;
+    }
+
+    .tree-star {
+        width: 60px;
+        height: 60px;
+    }
+
+    .layer-1 .layer-content {
+        border-width: 0 30px 50px 30px;
+    }
+
+    .layer-2 .layer-content {
+        border-width: 0 45px 65px 45px;
+    }
+
+    .layer-3 .layer-content {
+        border-width: 0 60px 80px 60px;
+    }
+
+    .layer-4 .layer-content {
+        border-width: 0 75px 95px 75px;
+    }
+
+    .layer-5 .layer-content {
+        border-width: 0 90px 110px 90px;
+    }
+
+    .tree-light {
+        width: 10px;
+        height: 10px;
+    }
+
+    .gift {
+        width: 40px;
+        height: 40px;
+    }
+
+    .gift-2 {
+        width: 50px;
+        height: 50px;
+    }
+}
