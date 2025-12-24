@@ -1,77 +1,38 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import './MusicPlayer.css';
 
 const MusicPlayer = () => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [error, setError] = useState(false);
     const audioRef = useRef(null);
 
     useEffect(() => {
-        // Check if audio file exists
+        // Auto-play music when component mounts
         const audio = audioRef.current;
         if (audio) {
-            audio.addEventListener('loadeddata', () => {
-                setIsLoaded(true);
-                setError(false);
-            });
-            audio.addEventListener('error', () => {
-                setError(true);
-                setIsLoaded(false);
-            });
+            // Attempt to play with user interaction workaround
+            const playMusic = () => {
+                audio.play().catch((err) => {
+                    console.log('Auto-play prevented, will play on first user interaction:', err);
+                    // Add event listener for first user interaction
+                    document.addEventListener('click', () => {
+                        audio.play().catch(e => console.log('Play failed:', e));
+                    }, { once: true });
+                });
+            };
+
+            // Small delay to ensure page is loaded
+            setTimeout(playMusic, 500);
         }
     }, []);
 
-    const toggleMusic = () => {
-        if (audioRef.current && isLoaded) {
-            if (isPlaying) {
-                audioRef.current.pause();
-                setIsPlaying(false);
-            } else {
-                audioRef.current.play()
-                    .then(() => setIsPlaying(true))
-                    .catch((err) => {
-                        console.error('Audio play failed:', err);
-                        setError(true);
-                    });
-            }
-        }
-    };
-
     return (
-        <div className="music-player">
-            <button
-                className={`music-button ${isPlaying ? 'playing' : ''} ${error ? 'error' : ''}`}
-                onClick={toggleMusic}
-                title={
-                    error
-                        ? 'Music file not found'
-                        : isPlaying
-                            ? 'Pause Christmas Music 🎵'
-                            : 'Play Christmas Music 🎵'
-                }
-                disabled={error}
-            >
-                {error ? '❌' : isPlaying ? '🔊' : '🔇'}
-            </button>
-
-            {/* Christmas music audio */}
-            <audio
-                ref={audioRef}
-                loop
-                preload="auto"
-            >
-                <source src="/christmas-music.mp3" type="audio/mpeg" />
-                Your browser does not support the audio element.
-            </audio>
-
-            {/* Helpful tooltip */}
-            {!isLoaded && !error && (
-                <div className="music-tooltip">
-                    Add christmas-music.mp3 to public folder
-                </div>
-            )}
-        </div>
+        <audio
+            ref={audioRef}
+            loop
+            preload="auto"
+        >
+            <source src="/christmas-music.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
     );
 };
 
